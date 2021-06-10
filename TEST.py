@@ -8,3 +8,6 @@ import matplotlib.pyplot as plt
 ufgkv
 fufjvg
 vyjv
+kbhl
+guiy
+bkh
