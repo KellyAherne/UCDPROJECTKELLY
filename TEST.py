@@ -1,13 +1,7 @@
 import pandas as pd
 
-data = pd.read_csv("Telco Customer Sales.csv")
+data=pd.read_csv("netflix_titles.csv")
 
-print(data)
-
-import matplotlib.pyplot as plt
-ufgkv
-fufjvg
-vyjv
-kbhl
-guiy
-bkh
+new_Data=data.fillna(data.mean)
+print(new_Data.isnull().sum())
+print(data.shape, new_Data.shape)
