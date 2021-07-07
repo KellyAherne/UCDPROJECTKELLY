@@ -29,14 +29,18 @@ print(telcomissing)
 telcoduplicate = telcodata.duplicated(subset=None, keep="first")
 print(telcoduplicate)
 
-#seperate male and female customers into 2 datasets with specific columns
+#seperate male and female customers into 2 datasets with specific columns sorted by total charges
 malecustomers = telcodata[telcodata["gender"]== "Male"]
 femalecustomers = telcodata[telcodata["gender"]== "Female"]
 
 malecustomers1 = malecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
 femalecustomers1 = femalecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
-print(malecustomers1)
-print(femalecustomers1)
+
+maletotalchgs = malecustomers1.sort_values("TotalCharges", ascending=False)
+femaletotalchgs = femalecustomers1.sort_values("TotalCharges", ascending=False)
+
+print(maletotalchgs)
+print(femaletotalchgs)
 
 
 
@@ -45,5 +49,3 @@ print(femalecustomers1)
 
 
 
-print(telcodata.index)
-print(telcodata.sort_values(["TotalCharges", "gender"], ascending=[False, True]))
