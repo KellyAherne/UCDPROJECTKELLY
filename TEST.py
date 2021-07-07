@@ -1,9 +1,8 @@
-import requests
+import pandas as pd
+import numpy as np
 
-apidata=requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=TEO&apikey=TGFBMIZEC0YHTT5W")
+#import dataset
+telcodata = pd.read_csv("Telco_customer_churn_project.csv")
 
-parsed_apidata=apidata.json()
 
-print(type(parsed_apidata))
-print(parsed_apidata)
 
