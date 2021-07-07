@@ -36,11 +36,11 @@ femalecustomers = telcodata[telcodata["gender"]== "Female"]
 malecustomers1 = malecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
 femalecustomers1 = femalecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
 
-maletotalchgs = malecustomers1.sort_values("TotalCharges", ascending=False)
-femaletotalchgs = femalecustomers1.sort_values("TotalCharges", ascending=False)
+malemonthlychgs = malecustomers1.sort_values("MonthlyCharges", ascending=False)
+femalemonthlychgs = femalecustomers1.sort_values("MonthlyCharges", ascending=False)
 
-print(maletotalchgs)
-print(femaletotalchgs)
+print(malemonthlychgs)
+print(femalemonthlychgs)
 
 
 
