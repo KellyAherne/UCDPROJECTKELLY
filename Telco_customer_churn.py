@@ -12,11 +12,12 @@ print(telcodata)
 #import API:
 apidata=requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=TEO&apikey=TGFBMIZEC0YHTT5W")
 
-
-#str to dict using json
+#API str to dict using json
 parsed_apidata=apidata.json()
 print(type(parsed_apidata))
 print(parsed_apidata)
+
+
 
 print(telcodata.head())
 print(telcodata.info())
