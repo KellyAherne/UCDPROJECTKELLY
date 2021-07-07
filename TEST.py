@@ -1,7 +1,9 @@
-import pandas as pd
+import requests
 
-data=pd.read_csv("netflix_titles.csv")
+apidata=requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=TEO&apikey=TGFBMIZEC0YHTT5W")
 
-new_Data=data.fillna(data.mean)
-print(new_Data.isnull().sum())
-print(data.shape, new_Data.shape)
+parsed_apidata=apidata.json()
+
+print(type(parsed_apidata))
+print(parsed_apidata)
+
