@@ -67,3 +67,53 @@ print(malemonthlychgscategorized)
 
 femalemonthlychgscategorized = pd.cut(femalemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["low", "quite low", "mid", "quite high", "high"])
 print(femalemonthlychgscategorized)
+
+MaleCategories = []
+
+for i in malemonthlychgs["MonthlyCharges"]:
+
+    if (i < 25):
+        MaleCategories.append("Low")
+
+    elif (i > 25) & (i < 50):
+        MaleCategories.append("Quite Low")
+
+    elif (i > 50 ) & (i < 75):
+        MaleCategories.append("Mid")
+
+    elif (i > 75 ) & (i < 100):
+        MaleCategories.append("Quite High")
+
+    elif (i > 100 ) & (i < 125):
+        MaleCategories.append("High")
+
+print(MaleCategories)
+
+MaleCategories2 = pd.DataFrame(MaleCategories, columns=["MonthlyCharges"])
+print(MaleCategories2)
+
+FemaleCategories = []
+
+for i in femalemonthlychgs["MonthlyCharges"]:
+
+    if (i < 25):
+        FemaleCategories.append("Low")
+
+    elif (i > 25) & (i < 50):
+        FemaleCategories.append("Quite Low")
+
+    elif (i > 50 ) & (i < 75):
+        FemaleCategories.append("Mid")
+
+    elif (i > 75 ) & (i < 100):
+        FemaleCategories.append("Quite High")
+
+    elif (i > 100 ) & (i < 125):
+        FemaleCategories.append("High")
+
+print(FemaleCategories)
+
+FemaleCategories2 = pd.DataFrame(FemaleCategories, columns=["MonthlyCharges"])
+print(FemaleCategories2)
+
+#graph no of customers in each category
