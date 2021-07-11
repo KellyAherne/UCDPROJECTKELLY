@@ -117,4 +117,15 @@ print(FemaleCategories)
 FemaleCategories2 = pd.DataFrame(FemaleCategories, columns=["MonthlyCharges"])
 print(FemaleCategories2)
 
+# Calculate the number of male and female customers
+def somecalculation(x):
+    return (telcodata['gender'] == x).sum()
+
+print(somecalculation('Male'))
+print(somecalculation('Female'))
+
+
+
+
+
 #graph no of customers in each category
