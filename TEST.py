@@ -13,3 +13,6 @@ print(telcodata[telcodata['tenure'] == 0][['tenure','TotalCharges']])
 
 print(telcodata.fillna(0, inplace=True))
 print(telcodata.shape)
+
+for No in PhoneService:
+    print()

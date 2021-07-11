@@ -55,3 +55,9 @@ femalemonthlychgs = femalecustomers1.sort_values("MonthlyCharges", ascending=Fal
 print(malemonthlychgs)
 print(femalemonthlychgs)
 
+#use iterrows to show all headings before MonthlyCharges on teh malecustomers1 list
+for x in malecustomers1:
+    print (x)
+    if x == "MonthlyCharges":
+        break
+
