@@ -61,3 +61,9 @@ for x in malecustomers1:
     if x == "MonthlyCharges":
         break
 
+#split into monthly charges categories by amount
+malemonthlychgscategorized = pd.cut(malemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["low", "quite low", "mid", "quite high", "high"])
+print(malemonthlychgscategorized)
+
+femalemonthlychgscategorized = pd.cut(femalemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["low", "quite low", "mid", "quite high", "high"])
+print(femalemonthlychgscategorized)
