@@ -21,7 +21,7 @@ print(telcodata.info())
 print(telcodata.shape)
 print(telcodata.describe(include="all"))
 
-#check for missing values/duplicates
+#check for missing values
 telcomissing = telcodata.isna().any()
 print(telcomissing)
 
@@ -39,6 +39,7 @@ print(telcodata[telcodata['tenure'] == 0][['tenure','TotalCharges']])
 print(telcodata.fillna(0, inplace=True))
 print(telcodata.shape)
 
+#check for missing duplicates
 telcoduplicate = telcodata.duplicated(subset=None, keep="first")
 print(telcoduplicate)
 
