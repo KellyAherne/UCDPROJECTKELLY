@@ -16,7 +16,7 @@ print(parsed_apidata)
 
 #import dataset and view info
 telcodata = pd.read_csv("Telco_customer_churn_project.csv")
-print(telcodata.head())
+print(telcodata.head(5))
 print(telcodata.info())
 print(telcodata.shape)
 print(telcodata.describe(include="all"))
@@ -63,10 +63,10 @@ for x in malecustomers1:
         break
 
 #split into monthly charges categories by amount
-malemonthlychgscategorized = pd.cut(malemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["low", "quite low", "mid", "quite high", "high"])
+malemonthlychgscategorized = pd.cut(malemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["1-low-M", "2-quite low-M", "3-mid-M", "4-quite high-M", "5-high-M"])
 print(malemonthlychgscategorized)
 
-femalemonthlychgscategorized = pd.cut(femalemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["low", "quite low", "mid", "quite high", "high"])
+femalemonthlychgscategorized = pd.cut(femalemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["1-low-F", "2-quite low-F", "3-mid-F", "4-quite high-F", "5-high-F"])
 print(femalemonthlychgscategorized)
 
 MaleCategories = []
@@ -74,23 +74,23 @@ MaleCategories = []
 for i in malemonthlychgs["MonthlyCharges"]:
 
     if (i < 25):
-        MaleCategories.append("Low")
+        MaleCategories.append("1-Low-M")
 
     elif (i > 25) & (i < 50):
-        MaleCategories.append("Quite Low")
+        MaleCategories.append("2-Quite Low-M")
 
     elif (i > 50 ) & (i < 75):
-        MaleCategories.append("Mid")
+        MaleCategories.append("3-Mid-M")
 
     elif (i > 75 ) & (i < 100):
-        MaleCategories.append("Quite High")
+        MaleCategories.append("4-Quite High-M")
 
     elif (i > 100 ) & (i < 125):
-        MaleCategories.append("High")
+        MaleCategories.append("5-High-M")
 
 print(MaleCategories)
 
-MaleCategories2 = pd.DataFrame(MaleCategories, columns=["MonthlyCharges"])
+MaleCategories2 = pd.DataFrame(MaleCategories, columns=["MonthlyChargesGroup"])
 print(MaleCategories2)
 
 FemaleCategories = []
@@ -98,23 +98,23 @@ FemaleCategories = []
 for i in femalemonthlychgs["MonthlyCharges"]:
 
     if (i < 25):
-        FemaleCategories.append("Low")
+        FemaleCategories.append("1-Low-F")
 
     elif (i > 25) & (i < 50):
-        FemaleCategories.append("Quite Low")
+        FemaleCategories.append("2-Quite Low-F")
 
     elif (i > 50 ) & (i < 75):
-        FemaleCategories.append("Mid")
+        FemaleCategories.append("3-Mid-F")
 
     elif (i > 75 ) & (i < 100):
-        FemaleCategories.append("Quite High")
+        FemaleCategories.append("4-Quite High-F")
 
     elif (i > 100 ) & (i < 125):
-        FemaleCategories.append("High")
+        FemaleCategories.append("5-High-F")
 
 print(FemaleCategories)
 
-FemaleCategories2 = pd.DataFrame(FemaleCategories, columns=["MonthlyCharges"])
+FemaleCategories2 = pd.DataFrame(FemaleCategories, columns=["MonthlyChargesGroup"])
 print(FemaleCategories2)
 
 # Calculate the number of male and female customers
@@ -126,10 +126,10 @@ print(somecalculation('Female'))
 
 
 #Totals of male and female by category
-Maletotals = MaleCategories2.groupby("MonthlyCharges")["MonthlyCharges"].count()
+Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Maletotals)
 
-Femaletotals = FemaleCategories2.groupby("MonthlyCharges")["MonthlyCharges"].count()
+Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Femaletotals)
 
 # Graph results on a bar chart by monthly charges category
@@ -139,8 +139,8 @@ print(Maletotals.plot(x="Monthly Charges", y="Amount", rot=90, kind="bar",
 print(Femaletotals.plot(kind="bar", rot=90,
                 title="Female Monthly Charges"))
 
-
 # Merge dataframes and compare on single graph
+
 
 # Layer graphs to compare
 
