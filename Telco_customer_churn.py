@@ -139,15 +139,26 @@ print(Maletotals.plot(x="Monthly Charges", y="Amount", rot=90, kind="bar",
 print(Femaletotals.plot(kind="bar", rot=90,
                 title="Female Monthly Charges"))
 
-# Merge dataframes and compare on single graph
+# Merge dataframes
 male = malecustomers1.merge(malemonthlychgscategorized, how="inner", left_index=True, right_index=True)
 female = femalecustomers1.merge(femalemonthlychgscategorized, how="inner", left_index=True, right_index=True)
 
+# Check row and column amounts to ensure no data is lost
 print(male.shape)
+print(male.head)
 print(female.shape)
+malefemale = pd.concat([male, female])
+print(malefemale.shape)
 
+# Show male and female dataframes on graph
+male[male["gender"] == "Male"]["MonthlyCharges_y"].hist(alpha=0.7, color="r", label="Male")
+female[female["gender"] == "Female"]["MonthlyCharges_y"].hist(alpha=0.3, color="b", label="Female")
+plt.title = "Monthly Charges Comparison"
+plt.xlabel("Categories")
+plt.ylabel("No. of Customers")
+plt.legend(["Male", "Female"])
+print(plt.show)
 
-# Layer graphs to compare
 
 
 
