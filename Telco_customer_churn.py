@@ -140,8 +140,8 @@ print(Femaletotals.plot(kind="bar", rot=90,
                 title="Female Monthly Charges"))
 
 # Merge dataframes and compare on single graph
-male = malecustomers1.merge(MaleCategories2, how="inner", left_index=True, right_index=True)
-female = femalecustomers1.merge(FemaleCategories2, how="inner", left_index=True, right_index=True)
+male = malecustomers1.merge(malemonthlychgscategorized, how="inner", left_index=True, right_index=True)
+female = femalecustomers1.merge(femalemonthlychgscategorized, how="inner", left_index=True, right_index=True)
 
 print(male.shape)
 print(female.shape)
