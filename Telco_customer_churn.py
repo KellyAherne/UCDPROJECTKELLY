@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 import requests
-import matplotlib.pyplot as ply
+import matplotlib.pyplot as plt
 import seaborn as sns
 
 
@@ -132,7 +132,7 @@ print(Maletotals)
 Femaletotals = FemaleCategories2.groupby("MonthlyCharges")["MonthlyCharges"].count()
 print(Femaletotals)
 
-# Graph results on a bar chart
+# Graph results on a bar chart by monthly charges category
 print(Maletotals.plot(x="Monthly Charges", y="Amount", rot=90, kind="bar",
                 title="Male Monthly Charges"))
 
@@ -140,9 +140,14 @@ print(Femaletotals.plot(kind="bar", rot=90,
                 title="Female Monthly Charges"))
 
 
+# Merge dataframes and compare on single graph
+
+# Layer graphs to compare
 
 
 
 
 
-#graph no of customers in each category
+
+
+
