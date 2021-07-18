@@ -56,7 +56,7 @@ femalemonthlychgs = femalecustomers1.sort_values("MonthlyCharges", ascending=Fal
 print(malemonthlychgs)
 print(femalemonthlychgs)
 
-#use iterrows to show all headings before MonthlyCharges on teh malecustomers1 list
+#use iterrows to show all headings before MonthlyCharges on the malecustomers1 list
 for x in malecustomers1:
     print (x)
     if x == "MonthlyCharges":
@@ -123,6 +123,23 @@ def somecalculation(x):
 
 print(somecalculation('Male'))
 print(somecalculation('Female'))
+
+
+#Totals of male and female by category
+Maletotals = MaleCategories2.groupby("MonthlyCharges")["MonthlyCharges"].count()
+print(Maletotals)
+
+Femaletotals = FemaleCategories2.groupby("MonthlyCharges")["MonthlyCharges"].count()
+print(Femaletotals)
+
+# Graph results on a bar chart
+print(Maletotals.plot(x="Monthly Charges", y="Amount", rot=90, kind="bar",
+                title="Male Monthly Charges"))
+
+print(Femaletotals.plot(kind="bar", rot=90,
+                title="Female Monthly Charges"))
+
+
 
 
 
