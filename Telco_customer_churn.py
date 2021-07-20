@@ -129,6 +129,7 @@ print(somecalculation('Female'))
 
 Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Maletotals)
+
 Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Femaletotals)
 
@@ -143,28 +144,39 @@ print(female.shape)
 malefemale = pd.concat([male, female])
 print(malefemale.shape)
 
-# Show male and female dataframes on graph
-fig, ax = plt.subplots()
 
-male[male["gender"] == "Male"]["MonthlyCharges_y"].hist(alpha=0.7, color="r", label="Male")
-female[female["gender"] == "Female"]["MonthlyCharges_y"].hist(alpha=0.3, color="b", label="Female")
-plt.title = "Monthly Charges Comparison"
-plt.xlabel("Categories")
-plt.ylabel("No. of Customers")
-plt.legend(["Male", "Female"])
-print(plt.show)
+# creating the dataset
+data = {'1-Low-M': 714, '2-Quite Low-M': 461, '3-Mid-M': 813,
+        '4-Quite High-M': 1104, '5-High-M' : 441}
+category = list(data.keys())
+amount = list(data.values())
 
+fig = plt.figure(figsize=(10, 5))
 
-Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
-print(Maletotals)
-Maletotals.plot(kind="bar", rot=90,
-                title="Male Monthly Charges")
-plt.subplot(151)
+# creating the bar plot
+plt.bar(category, amount, color='maroon',
+        width=0.4)
+
+plt.xlabel("Category")
+plt.ylabel("No. customers in category")
+plt.title("Male customers monthly spend")
 plt.show()
 
-Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
-print(Femaletotals)
-Femaletotals.plot(kind="bar", rot=90,
-                title="Female Monthly Charges", color="r")
-plt.subplot(151)
+# creating the dataset
+data = {'1-Low-M': 675, '2-Quite Low-M': 427, '3-Mid-M': 803,
+        '4-Quite High-M': 1108, '5-High-M' : 461}
+category = list(data.keys())
+amount = list(data.values())
+
+fig = plt.figure(figsize=(10, 5))
+
+# creating the bar plot
+plt.bar(category, amount, color='blue',
+        width=0.4)
+
+plt.xlabel("Category")
+plt.ylabel("No. customers in category")
+plt.title("Female customers monthly spend")
 plt.show()
+
+
