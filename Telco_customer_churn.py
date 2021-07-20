@@ -133,6 +133,7 @@ print(Maletotals)
 Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Femaletotals)
 
+
 # Merge dataframes
 male = malecustomers1.merge(malemonthlychgscategorized, how="inner", left_index=True, right_index=True)
 female = femalecustomers1.merge(femalemonthlychgscategorized, how="inner", left_index=True, right_index=True)
@@ -219,6 +220,38 @@ g.set_title("Male Female Comparison")
 plt.show()
 
 print(malefemale.columns)
+
+# Check average monthly spend
+print(malefemale["MonthlyCharges_x"].mean())
+print(malefemale["MonthlyCharges_x"].sum())
+print(malefemale["MonthlyCharges_x"].count())
+
+#Remove customer IDs from the data set
+churncomp = telcodata.iloc[:,1:]
+#Convertin the predictor variable in a binary numeric variable
+churncomp['Churn'].replace(to_replace='Yes', value=1, inplace=True)
+churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
+
+#Let's convert all the categorical variables into dummy variables
+df_dummies = pd.get_dummies(churncomp)
+print(df_dummies.head())
+
+#Get Correlation of "Churn" with other variables:
+plt.figure(figsize=(15,8))
+df_dummies.corr()['Churn'].sort_values(ascending = False).plot(kind='bar')
+
+ax = telcodata['Contract'].value_counts().plot(kind = 'bar',rot = 0, width = 0.3)
+ax.set_ylabel('# of Customers')
+ax.set_title('# of Customers by Contract Type')
+plt.show()
+
+
+#Insights
+#1 Monthly spend is not affected by gender
+#2 "Quite High" range is the highest in both male and female. It accounts for 2212 customers out of 7043 = 31.4%
+#3 Average monthly spend is $64.76.
+#4 Month to month contracts, absence of online security and tech support seem to be positively correlated with churn. While, tenure, two year contracts seem to be negatively correlated with churn. Online security, streaming TV, online backup, tech support, etc. without internet connection seem to be negatively related to churn.
+#5 Most customers are in the month to month contract. While there are equal number of customers in the 1 year and 2 year contracts.
 
 
 
