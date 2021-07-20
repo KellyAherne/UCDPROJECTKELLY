@@ -218,7 +218,7 @@ g = sns.countplot(x='MonthlyCharges_y', data=malefemale, hue='gender')
 g.set_title("Male Female Comparison")
 plt.show()
 
-
+print(malefemale.columns)
 
 
 
