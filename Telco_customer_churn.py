@@ -144,7 +144,6 @@ print(female.shape)
 malefemale = pd.concat([male, female])
 print(malefemale.shape)
 
-
 # creating the dataset
 data = {'1-Low-M': 714, '2-Quite Low-M': 461, '3-Mid-M': 813,
         '4-Quite High-M': 1104, '5-High-M' : 441}
@@ -206,4 +205,24 @@ plt.xticks([r + barWidth for r in range(len(Male))],
 
 plt.legend()
 plt.show()
+
+
+# Sort merged dataframe
+malefemale = malefemale.sort_values(["gender", "MonthlyCharges_y"])
+print(malefemale)
+
+fig, ax = plt.subplots(1,1)
+
+# Load Data
+g = sns.countplot(x='MonthlyCharges_y', data=malefemale, hue='gender')
+g.set_title("Male Female Comparison")
+plt.show()
+
+# Visualise Average Age of Stroke Patients by Gender
+g1 = sns.barplot(x='MonthlyCharges_y', y='No. of Customers', data=malefemale, hue='gender')
+g1.set_title("Comparison by gender")
+plt.show()
+print(data.head(5))
+
+
 

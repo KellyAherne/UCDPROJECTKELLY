@@ -1,29 +1,16 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-# set width of bar
-barWidth = 0.25
-fig = plt.subplots(figsize=(12, 8))
+x = [0, 1, 2, 3, 4, 5, 6, 7]
+y = [160, 167, 17, 130, 120, 40, 105, 70]
+fig, ax = plt.subplots()
+width = 0.75
+ind = np.arange(len(y))
 
-# set height of bar
-Male = [714, 461, 813, 1104, 441]
-Female = [675, 427, 803, 1108, 461]
+ax.barh(ind, y, width, color="green")
 
-# Set position of bar on X axis
-br1 = np.arange(len(Male))
-br2 = [x + barWidth for x in br1]
-
-# Make the plot
-plt.bar(br1, Male, color='r', width=barWidth,
-        edgecolor='grey', label='Male')
-plt.bar(br2, Female, color='g', width=barWidth,
-        edgecolor='grey', label='Female')
-
-# Adding Xticks
-plt.xlabel('Categories', fontweight='bold', fontsize=15)
-plt.ylabel('No. of Customers', fontweight='bold', fontsize=15)
-plt.xticks([r + barWidth for r in range(len(Male))],
-           ['Low', 'Quite Low', 'Mid', 'Quite High', 'High'])
-
-plt.legend()
+for i, v in enumerate(y):
+    ax.text(v + 3, i + .25, str(v),
+            color='blue', fontweight='bold')
 plt.show()
