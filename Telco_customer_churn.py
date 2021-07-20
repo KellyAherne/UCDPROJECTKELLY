@@ -126,18 +126,11 @@ print(somecalculation('Female'))
 
 
 #Totals of male and female by category
+
 Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Maletotals)
-
 Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Femaletotals)
-
-# Graph results on a bar chart by monthly charges category
-print(Maletotals.plot(x="Monthly Charges", y="Amount", rot=90, kind="bar",
-                title="Male Monthly Charges"))
-
-print(Femaletotals.plot(kind="bar", rot=90,
-                title="Female Monthly Charges"))
 
 # Merge dataframes
 male = malecustomers1.merge(malemonthlychgscategorized, how="inner", left_index=True, right_index=True)
@@ -151,6 +144,8 @@ malefemale = pd.concat([male, female])
 print(malefemale.shape)
 
 # Show male and female dataframes on graph
+fig, ax = plt.subplots()
+
 male[male["gender"] == "Male"]["MonthlyCharges_y"].hist(alpha=0.7, color="r", label="Male")
 female[female["gender"] == "Female"]["MonthlyCharges_y"].hist(alpha=0.3, color="b", label="Female")
 plt.title = "Monthly Charges Comparison"
@@ -160,10 +155,16 @@ plt.legend(["Male", "Female"])
 print(plt.show)
 
 
+Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
+print(Maletotals)
+Maletotals.plot(kind="bar", rot=90,
+                title="Male Monthly Charges")
+plt.subplot(151)
+plt.show()
 
-
-
-
-
-
-
+Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
+print(Femaletotals)
+Femaletotals.plot(kind="bar", rot=90,
+                title="Female Monthly Charges", color="r")
+plt.subplot(151)
+plt.show()
