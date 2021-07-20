@@ -218,11 +218,7 @@ g = sns.countplot(x='MonthlyCharges_y', data=malefemale, hue='gender')
 g.set_title("Male Female Comparison")
 plt.show()
 
-# Visualise Average Age of Stroke Patients by Gender
-g1 = sns.barplot(x='MonthlyCharges_y', y='No. of Customers', data=malefemale, hue='gender')
-g1.set_title("Comparison by gender")
-plt.show()
-print(data.head(5))
+
 
 
 
