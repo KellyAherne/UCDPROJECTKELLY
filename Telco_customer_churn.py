@@ -5,7 +5,6 @@ import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 #import API Telco stock info:
 apidata=requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=TEO&apikey=TGFBMIZEC0YHTT5W")
 
@@ -25,7 +24,6 @@ print(telcodata.describe(include="all"))
 telcomissing = telcodata.isna().any()
 print(telcomissing)
 
-
 #update Total Charges column to numeric
 telcodata["TotalCharges"] = pd.to_numeric(telcodata.TotalCharges, errors="coerce")
 print(telcodata.TotalCharges.isnull().sum())
@@ -33,7 +31,7 @@ print(telcodata.TotalCharges.isnull().sum())
 #print null values to check for pattern
 print(telcodata[np.isnan(telcodata["TotalCharges"])])
 
-#tenure = 0,
+# where tenure = 0, total charges also = 0.
 print(telcodata[telcodata['tenure'] == 0][['tenure','TotalCharges']])
 
 #update missing TotalCharges to be 0
@@ -77,16 +75,16 @@ for i in malemonthlychgs["MonthlyCharges"]:
     if (i < 25):
         MaleCategories.append("1-Low-M")
 
-    elif (i > 25) & (i < 50):
+    elif (i >= 25) & (i < 50):
         MaleCategories.append("2-Quite Low-M")
 
-    elif (i > 50 ) & (i < 75):
+    elif (i >= 50 ) & (i < 75):
         MaleCategories.append("3-Mid-M")
 
-    elif (i > 75 ) & (i < 100):
+    elif (i >= 75 ) & (i < 100):
         MaleCategories.append("4-Quite High-M")
 
-    elif (i > 100 ) & (i < 125):
+    elif (i >= 100 ) & (i <= 125):
         MaleCategories.append("5-High-M")
 
 print(MaleCategories)
@@ -101,16 +99,16 @@ for i in femalemonthlychgs["MonthlyCharges"]:
     if (i < 25):
         FemaleCategories.append("1-Low-F")
 
-    elif (i > 25) & (i < 50):
+    elif (i >= 25) & (i < 50):
         FemaleCategories.append("2-Quite Low-F")
 
-    elif (i > 50 ) & (i < 75):
+    elif (i >= 50 ) & (i < 75):
         FemaleCategories.append("3-Mid-F")
 
-    elif (i > 75 ) & (i < 100):
+    elif (i >= 75 ) & (i < 100):
         FemaleCategories.append("4-Quite High-F")
 
-    elif (i > 100 ) & (i < 125):
+    elif (i >= 100 ) & (i < 125):
         FemaleCategories.append("5-High-F")
 
 print(FemaleCategories)
@@ -130,10 +128,8 @@ print(somecalculation('Female'))
 
 Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Maletotals)
-
 Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Femaletotals)
-
 
 # Merge dataframes
 male = malecustomers1.merge(malemonthlychgscategorized, how="inner", left_index=True, right_index=True)
@@ -204,15 +200,12 @@ plt.xlabel('Categories', fontweight='bold', fontsize=15)
 plt.ylabel('No. of Customers', fontweight='bold', fontsize=15)
 plt.xticks([r + barWidth for r in range(len(Male))],
            ['Low', 'Quite Low', 'Mid', 'Quite High', 'High'])
-
 plt.legend()
 plt.show()
-
 
 # Sort merged dataframe
 malefemale = malefemale.sort_values(["gender", "MonthlyCharges_y"])
 print(malefemale)
-
 fig, ax = plt.subplots(1,1)
 
 # Load Data
@@ -229,7 +222,7 @@ print(malefemale["MonthlyCharges_x"].count())
 
 #Remove customer IDs from the data set
 churncomp = telcodata.iloc[:,1:]
-#Convertin the predictor variable in a binary numeric variable
+#Convert the predictor variable in a binary numeric variable
 churncomp['Churn'].replace(to_replace='Yes', value=1, inplace=True)
 churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
 
@@ -237,11 +230,9 @@ churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
 df_dummies = pd.get_dummies(churncomp)
 print(df_dummies.head())
 
-
 #Get Correlation of "Churn" with other variables:
 plt.figure(figsize=(15,8))
 df_dummies.corr()['Churn'].sort_values(ascending = False).plot(kind='bar')
-
 
 fig, ax = plt.subplots(1,1)
 
@@ -252,8 +243,6 @@ plt.show()
 
 print(telcodata[['MonthlyCharges', 'TotalCharges']].plot.scatter(x = 'MonthlyCharges',
                                                               y='TotalCharges'))
-
-
 #Insights
 #1 Monthly spend is not affected by gender
 #2 "Quite High" range is the highest in both male and female. It accounts for 2212 customers out of 7043 = 31.4%
@@ -261,5 +250,4 @@ print(telcodata[['MonthlyCharges', 'TotalCharges']].plot.scatter(x = 'MonthlyCha
 #4 Month to month contracts, absence of online security and tech support seem to be positively correlated with churn. While, tenure, two year contracts seem to be negatively correlated with churn. Online security, streaming TV, online backup, tech support, etc. without internet connection seem to be negatively related to churn.
 #5 Most customers are in the month to month contract. While there are almost equal number of customers in the 1 year and 2 year contracts.
 #6 Total charges increase as the monthly bill for a customer increases
-
 
