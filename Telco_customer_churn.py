@@ -25,6 +25,7 @@ print(telcodata.describe(include="all"))
 telcomissing = telcodata.isna().any()
 print(telcomissing)
 
+
 #update Total Charges column to numeric
 telcodata["TotalCharges"] = pd.to_numeric(telcodata.TotalCharges, errors="coerce")
 print(telcodata.TotalCharges.isnull().sum())
@@ -236,14 +237,21 @@ churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
 df_dummies = pd.get_dummies(churncomp)
 print(df_dummies.head())
 
+
 #Get Correlation of "Churn" with other variables:
 plt.figure(figsize=(15,8))
 df_dummies.corr()['Churn'].sort_values(ascending = False).plot(kind='bar')
+
+
+fig, ax = plt.subplots(1,1)
 
 ax = telcodata['Contract'].value_counts().plot(kind = 'bar',rot = 0, width = 0.3)
 ax.set_ylabel('# of Customers')
 ax.set_title('# of Customers by Contract Type')
 plt.show()
+
+print(telcodata[['MonthlyCharges', 'TotalCharges']].plot.scatter(x = 'MonthlyCharges',
+                                                              y='TotalCharges'))
 
 
 #Insights
@@ -251,7 +259,7 @@ plt.show()
 #2 "Quite High" range is the highest in both male and female. It accounts for 2212 customers out of 7043 = 31.4%
 #3 Average monthly spend is $64.76.
 #4 Month to month contracts, absence of online security and tech support seem to be positively correlated with churn. While, tenure, two year contracts seem to be negatively correlated with churn. Online security, streaming TV, online backup, tech support, etc. without internet connection seem to be negatively related to churn.
-#5 Most customers are in the month to month contract. While there are equal number of customers in the 1 year and 2 year contracts.
-
+#5 Most customers are in the month to month contract. While there are almost equal number of customers in the 1 year and 2 year contracts.
+#6 Total charges increase as the monthly bill for a customer increases
 
 
