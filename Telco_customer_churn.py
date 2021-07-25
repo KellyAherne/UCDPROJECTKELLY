@@ -142,8 +142,8 @@ malefemale = pd.concat([male, female])
 print(malefemale.shape)
 
 # creating the dataset
-data = {'1-Low-M': 714, '2-Quite Low-M': 461, '3-Mid-M': 813,
-        '4-Quite High-M': 1104, '5-High-M' : 441}
+data = {'1-Low-M': 714, '2-Quite Low-M': 471, '3-Mid-M': 817,
+        '4-Quite High-M': 1109, '5-High-M' : 444}
 category = list(data.keys())
 amount = list(data.values())
 
@@ -159,8 +159,8 @@ plt.title("Male customers monthly spend")
 plt.show()
 
 # creating the dataset
-data = {'1-Low-M': 675, '2-Quite Low-M': 427, '3-Mid-M': 803,
-        '4-Quite High-M': 1108, '5-High-M' : 461}
+data = {'1-Low-M': 675, '2-Quite Low-M': 434, '3-Mid-M': 804,
+        '4-Quite High-M': 1111, '5-High-M' : 464}
 category = list(data.keys())
 amount = list(data.values())
 
@@ -181,8 +181,8 @@ barWidth = 0.25
 fig = plt.subplots(figsize=(12, 8))
 
 # set height of bar
-Male = [714, 461, 813, 1104, 441]
-Female = [675, 427, 803, 1108, 461]
+Male = [714, 471, 817, 1109, 444]
+Female = [675, 434, 804, 1111, 464]
 
 # Set position of bar on X axis
 br1 = np.arange(len(Male))
