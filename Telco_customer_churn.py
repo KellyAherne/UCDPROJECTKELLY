@@ -25,19 +25,12 @@ print(telcodata.describe(include="all"))
 telcomissing = telcodata.isna().any()
 print(telcomissing)
 
-
-
-#update Total Charges and Monthly Charges column to numeric
+#update Total Charges column to numeric
 telcodata["TotalCharges"] = pd.to_numeric(telcodata.TotalCharges, errors="coerce")
 print(telcodata.TotalCharges.isnull().sum())
-telcodata["MonthlyCharges"] = pd.to_numeric(telcodata.MonthlyCharges, errors="coerce")
-print(telcodata.MonthlyCharges.isnull().sum())
-
-
 
 #print null values to check for pattern
 print(telcodata[np.isnan(telcodata["TotalCharges"])])
-
 
 # where tenure = 0, total charges also = 0.
 print(telcodata[telcodata['tenure'] == 0][['tenure','TotalCharges']])
@@ -257,4 +250,4 @@ print(telcodata[['MonthlyCharges', 'TotalCharges']].plot.scatter(x = 'MonthlyCha
 #3 Average monthly spend is $64.76.
 #4 Month to month contracts, absence of online security and tech support seem to be positively correlated with churn. While, tenure, two year contracts seem to be negatively correlated with churn. Online security, streaming TV, online backup, tech support, etc. without internet connection seem to be negatively related to churn.
 #5 Most customers are in the month to month contract. While there are almost equal number of customers in the 1 year and 2 year contracts.
-#6 Total charges increase as the monthly bill for a customer increases
+#6 Total charges increase as the monthly bill for a customer increases#6 Total charges increase as the monthly bill for a customer increases
