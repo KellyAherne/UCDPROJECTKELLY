@@ -250,4 +250,4 @@ print(telcodata[['MonthlyCharges', 'TotalCharges']].plot.scatter(x = 'MonthlyCha
 #3 Average monthly spend is $64.76.
 #4 Month to month contracts, absence of online security and tech support seem to be positively correlated with churn. While, tenure, two year contracts seem to be negatively correlated with churn. Online security, streaming TV, online backup, tech support, etc. without internet connection seem to be negatively related to churn.
 #5 Most customers are in the month to month contract. While there are almost equal number of customers in the 1 year and 2 year contracts.
-#6 Total charges increase as the monthly bill for a customer increases#6 Total charges increase as the monthly bill for a customer increases
+#6 Total charges increase as the monthly bill for a customer increases#6 Total charges increase as the monthly bill for a customer increases.
