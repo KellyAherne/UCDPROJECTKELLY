@@ -67,9 +67,8 @@ print(malemonthlychgscategorized)
 femalemonthlychgscategorized = pd.cut(femalemonthlychgs["MonthlyCharges"], bins=[0, 25, 50, 75, 100, 125], include_lowest=True, labels=["1-low-F", "2-quite low-F", "3-mid-F", "4-quite high-F", "5-high-F"])
 print(femalemonthlychgscategorized)
 
+# define male categories using elif
 MaleCategories = []
-
-
 for i in malemonthlychgs["MonthlyCharges"]:
 
     if (i < 25):
@@ -92,6 +91,7 @@ print(MaleCategories)
 MaleCategories2 = pd.DataFrame(MaleCategories, columns=["MonthlyChargesGroup"])
 print(MaleCategories2)
 
+# define female categories using elif
 FemaleCategories = []
 
 for i in femalemonthlychgs["MonthlyCharges"]:
@@ -123,9 +123,7 @@ def somecalculation(x):
 print(somecalculation('Male'))
 print(somecalculation('Female'))
 
-
 #Totals of male and female by category
-
 Maletotals = MaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
 print(Maletotals)
 Femaletotals = FemaleCategories2.groupby("MonthlyChargesGroup")["MonthlyChargesGroup"].count()
@@ -139,6 +137,7 @@ female = femalecustomers1.merge(femalemonthlychgscategorized, how="inner", left_
 print(male.shape)
 print(male.head)
 print(female.shape)
+print(female.head)
 malefemale = pd.concat([male, female])
 print(malefemale.shape)
 
