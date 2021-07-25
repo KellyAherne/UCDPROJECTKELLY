@@ -46,10 +46,8 @@ print(telcoduplicate)
 #seperate male and female customers into 2 datasets with specific columns sorted by total charges
 malecustomers = telcodata[telcodata["gender"]== "Male"]
 femalecustomers = telcodata[telcodata["gender"]== "Female"]
-
 malecustomers1 = malecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
 femalecustomers1 = femalecustomers[["customerID", "gender", "tenure", "DeviceProtection", "Contract", "PaperlessBilling", "MonthlyCharges", "TotalCharges"]]
-
 malemonthlychgs = malecustomers1.sort_values("MonthlyCharges", ascending=False)
 femalemonthlychgs = femalecustomers1.sort_values("MonthlyCharges", ascending=False)
 
@@ -57,7 +55,7 @@ print(malemonthlychgs)
 print(femalemonthlychgs)
 
 #use iterrows to show all headings before MonthlyCharges on the malecustomers1 list
-for x in malecustomers1:
+for x in malemonthlychgs:
     print (x)
     if x == "MonthlyCharges":
         break
