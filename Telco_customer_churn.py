@@ -221,11 +221,11 @@ print(malefemale["MonthlyCharges_x"].count())
 
 #Remove customer IDs from the data set
 churncomp = telcodata.iloc[:,1:]
-#Convert the predictor variable in a binary numeric variable
+#Convert the variables
 churncomp['Churn'].replace(to_replace='Yes', value=1, inplace=True)
 churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
 
-#Let's convert all the categorical variables into dummy variables
+#Convert all the categorical variables into dummy variables
 df_dummies = pd.get_dummies(churncomp)
 print(df_dummies.head())
 print(df_dummies.info())
@@ -236,6 +236,7 @@ df_dummies.corr()['Churn'].sort_values(ascending = False).plot(kind='bar')
 
 fig, ax = plt.subplots(1,1)
 
+#Show total customers by contract type
 ax = telcodata['Contract'].value_counts().plot(kind = 'bar',rot = 0, width = 0.3)
 ax.set_ylabel('# of Customers')
 ax.set_title('# of Customers by Contract Type')
