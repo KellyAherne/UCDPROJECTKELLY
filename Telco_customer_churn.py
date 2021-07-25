@@ -228,6 +228,7 @@ churncomp['Churn'].replace(to_replace='No',  value=0, inplace=True)
 #Let's convert all the categorical variables into dummy variables
 df_dummies = pd.get_dummies(churncomp)
 print(df_dummies.head())
+print(df_dummies.info())
 
 #Get Correlation of "Churn" with other variables:
 plt.figure(figsize=(15,8))
