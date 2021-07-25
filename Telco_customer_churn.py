@@ -69,6 +69,7 @@ print(femalemonthlychgscategorized)
 
 MaleCategories = []
 
+
 for i in malemonthlychgs["MonthlyCharges"]:
 
     if (i < 25):
